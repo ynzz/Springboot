@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.szl.sbdm.mapper.UserMapper">
+
+	<sql id="Base_Column_List">
+		id,
+		name,
+		age,
+		password
+	</sql>
+
+	<!-- 查询全部 -->
+	<select id="getUserList" resultType="com.szl.sbdm.model.User">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM user
+	</select>
+	
+	<!-- 根据id查询单个 -->
+	<select id="getUserById" resultType="com.szl.sbdm.model.User" parameterType="int">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM user 
+		WHERE
+		id = #{id}
+	</select>
+
+	<!-- 添加 -->
+	<insert id="add" parameterType="com.szl.sbdm.model.User">
+		INSERT INTO
+		user(id,name,age,password)
+		VALUES(#{id},#{name},#{age},#{password})
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="update" parameterType="map">
+		UPDATE
+		user
+		SET
+		name=#{name},age=#{age},password=#{password}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM 
+		user
+		WHERE
+		id=#{id}
+	</delete>
+</mapper>
