@@ -21,3 +21,4 @@ CREATE TABLE `customer` (
   KEY `idx_mix_customername_createtime` (`customerName`,`createTime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户主表';
 
+INSERT INTO customer (uuid, delflag, mobile, customername) VALUES (REPLACE(UUID(), '-',''),'1','18829281460','信仰');

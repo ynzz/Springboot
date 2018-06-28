@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/szl?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: root
+    password: 
+ 
+mybatis:
+  type-aliases-package: com.szl.entity
+  mapper-locations: classpath:mapper/*.xml
