@@ -5,7 +5,13 @@ spring:
     url: jdbc:mysql://localhost:3306/szl?useUnicode=true&characterEncoding=utf8&useSSL=true
     username: root
     password: 
+  devtools: #热部署
+    restart:
+      enabled: true #热部署生效
+      additional-paths:  #设置重启的目录，添加那个目录的文件需要restart
+      exclude: WEB-INF/** #排除自动重启
  
 mybatis:
   type-aliases-package: com.szl.entity
   mapper-locations: classpath:mapper/*.xml
+  

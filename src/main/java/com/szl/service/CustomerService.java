@@ -1,9 +1,13 @@
 package com.szl.service;
 
-import com.baomidou.mybatisplus.service.IService;
 import com.szl.entity.Customer;
 
-public interface CustomerService extends IService<Customer>{
+public interface CustomerService{
 
-	public Customer getCustomerById(String id);
+	/**
+	 * 根据手机号查询用户信息
+	 * @param mobil
+	 * @return
+	 */
+	public Customer getCustomerByMobile(String mobile);
 }

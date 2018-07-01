@@ -1,2 +1,6 @@
 server:
-  port: 8082
+  port: 8082 #端口
+  context-path: /szl  #访问前缀
+szl: 
+  name: szl
+  age: 23
