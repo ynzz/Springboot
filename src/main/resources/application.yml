@@ -5,6 +5,10 @@ spring:
     url: jdbc:mysql://localhost:3306/szl?useUnicode=true&characterEncoding=utf8&useSSL=true
     username: root
     password: 
+    #使用druid数据源，使用默认数据源下面的注解要注销或者更改其数据源根据具体数据源进行配置参数
+    type: com.alibaba.druid.pool.DruidDataSouce
+    
+    
   devtools: #热部署
     restart:
       enabled: true #热部署生效

@@ -21,6 +21,9 @@ public class Customer implements Serializable{
 	private String mobile;//手机号
 	private String password;//登录密码
 	private String salt;//密码哈希
+	
+	
+	
 	public String getUuid() {
 		return uuid;
 	}

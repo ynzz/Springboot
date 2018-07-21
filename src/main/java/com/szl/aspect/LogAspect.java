@@ -3,8 +3,10 @@ package com.szl.aspect;
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -18,6 +20,7 @@ import com.szl.vo.ResultVo;
 
 /**
  * 日志记录
+ * 
  * @author szl
  * @data 2018年6月30日 下午5:33:05
  *
@@ -27,42 +30,57 @@ import com.szl.vo.ResultVo;
 public class LogAspect {
 
 	private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
-	
+
 	@Pointcut("execution(* com.szl.controller.*.*(..))")
-	public void log(){
-		
+	public void log() {
+
 	}
-	
+
 	@Before("log()")
-	public void doBefore(JoinPoint joinPoint){
-		ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+	public void doBefore(JoinPoint joinPoint) {
+		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = attributes.getRequest();
-		//url
+		// url
 		logger.info("url={}", request.getRequestURI());
-		//method
+		// method
 		logger.info("method={}", request.getMethod());
-		//ip
+		// ip
 		logger.info("ip={}", request.getRemoteAddr());
-		//类方法
-		logger.info("class_method={}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-		//参数
+		// 类方法
+		logger.info("class_method={}",
+				joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+		// 参数
 		logger.info("args={}", joinPoint.getArgs());
 	}
-	
+
 	@After("log()")
-	public void doAfter(){
-		
+	public void doAfter() {
+
 	}
-	
+
 	@AfterReturning(pointcut = "log()", returning = "object")
-	public void doAfterReturning(Object object){
-		if(object instanceof ResultVo){
-			ResultVo resultVo = (ResultVo)object;
-			if(resultVo.getData() != null){
+	public void doAfterReturning(Object object) {
+		if (object instanceof ResultVo) {
+			ResultVo resultVo = (ResultVo) object;
+			if (resultVo.getData() != null) {
 				logger.info("response={}", resultVo.getData().toString());
 			}
-		}else{
+		} else {
 			logger.info("response={}", object);
 		}
+	}
+
+	@Around("log()")
+	public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
+		long time = System.currentTimeMillis();
+		Object retVal = null;
+		try {
+			retVal = pjp.proceed();
+		} finally {
+			time = System.currentTimeMillis() - time;
+			logger.info(String.format("process time: %d ms @%s.%s", time, pjp.getTarget().getClass().getName(),
+					pjp.getSignature().getName()));
+		}
+		return retVal;
 	}
 }

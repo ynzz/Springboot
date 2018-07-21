@@ -3,7 +3,6 @@ package com.szl.controller;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +30,7 @@ public class CustomerController {
 	}
 	/**
 	 * 根据手机号查询用户信息
-	 * @param mobil
+	 * @param mobile
 	 * @return
 	 */
 	@RequestMapping(value = "/getCustomer", method = RequestMethod.GET)

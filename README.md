@@ -111,8 +111,77 @@ pom.xml引入如下依赖：
 	resourceUtil.getName()//szl
 还可以从指定的文件文件中读取：
 在ResourceUtil上加上注解：@PropertySource(value="classpath:resource.properties")
+###2.3.3、使用工具类2：
+PropertiesListener：初始化加载配置文件
 
+	public class PropertiesListener implements ApplicationListener<ApplicationStartedEvent> {
 
+    	    private String propertyFileName;
+	
+	    public PropertiesListener(String propertyFileName) {
+	        this.propertyFileName = propertyFileName;
+	    }
+	
+	    @Override
+	    public void onApplicationEvent(ApplicationStartedEvent event) {
+	        PropertiesUtils.loadAllProperties(propertyFileName);
+	    }
+	}
+PropertiesUtils：加载配置文件内容
+
+	public class PropertiesUtils {
+	
+		public static Map<String, String> propertiesMap = new HashMap<>();
+	
+	    private static void processProperties(Properties props) throws BeansException {
+	        propertiesMap = new HashMap<String, String>();
+	        for (Object key : props.keySet()) {
+	            String keyStr = key.toString();
+	            try {
+	                // PropertiesLoaderUtils的默认编码是ISO-8859-1,在这里转码一下
+	                propertiesMap.put(keyStr, new String(props.getProperty(keyStr).getBytes("ISO-8859-1"), "utf-8"));
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            } catch (java.lang.Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	
+	    public static void loadAllProperties(String propertyFileName) {
+	        try {
+	            Properties properties = PropertiesLoaderUtils.loadAllProperties(propertyFileName);
+	            processProperties(properties);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	
+	    public static String getProperty(String name) {
+	        return propertiesMap.get(name).toString();
+	    }
+	
+	    public static Map<String, String> getAllProperty() {
+	        return propertiesMap;
+	    }
+	}
+Application修改为：
+
+	public static void main(String[] args) {
+	 	SpringApplication application = new SpringApplication(Application.class);
+      	application.addListeners(new PropertiesListener("application.properties"));//需要读取的配置文件
+      	application.run(args);
+	}
+Constant:常量类，与配置文件属性对应：
+
+	public interface Constant {
+		interface Szl {
+			String SZL_NAME = "szl.name";
+		}
+	}
+使用：
+ String name = PropertiesUtils.getProperty(Constant.Szl.SZL_NAME);
+ 
 #3、springboot aop处理请求
 ##3.1、统一返回类型
 新建ResultVo类，添加属性：
@@ -405,19 +474,5 @@ mybatis的相关配置：
 创建Service，需要执行的方法
 创建ServiceImpl，类上使用@Service注解；通过注入mapper，调用方法操作数据库；方法上使用@Transaction注解开启事务
 创建controller，注入Service，调用Service方法
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
