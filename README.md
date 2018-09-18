@@ -55,7 +55,7 @@ pom.xml文件引入如下依赖：
 运行Application.java的main方法;
 cmd到项目目录下，执行：mvn spring-boot:run;
 cmd到项目目录下，执行：mvn install，完成后cd target，执行：java -jar xxx.jar
-
+跳过单元测试： mvn -Dmaven.test.skip -U clean package
 
 #2、springboot 配置文件
 ##2.1、默认配置
