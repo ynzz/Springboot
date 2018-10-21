@@ -5,8 +5,21 @@ spring:
     url: jdbc:mysql://localhost:3306/szl?useUnicode=true&characterEncoding=utf8&useSSL=true
     username: root
     password: root
-    #使用druid数据源，使用默认数据源下面的注解要注销或者更改其数据源根据具体数据源进行配置参数
-#    type: com.alibaba.druid.pool.DruidDataSouce
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
     
     
   devtools: #热部署

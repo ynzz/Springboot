@@ -22,7 +22,7 @@ import com.szl.vo.ResultVo;
  * 日志记录
  * 
  * @author szl
- * @data 2018年6月30日 下午5:33:05
+ * @date 2018年6月30日 下午5:33:05
  *
  */
 @Aspect

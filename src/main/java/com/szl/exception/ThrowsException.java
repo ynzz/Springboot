@@ -5,7 +5,7 @@ import com.szl.common.ResultEnum;
 /**
  * 自定义异常
  * @author szl
- * @data 2018年6月30日 下午9:16:13
+ * @date 2018年6月30日 下午9:16:13
  *
  */
 public class ThrowsException extends RuntimeException{

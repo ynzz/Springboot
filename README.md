@@ -475,4 +475,33 @@ mybatis的相关配置：
 创建ServiceImpl，类上使用@Service注解；通过注入mapper，调用方法操作数据库；方法上使用@Transaction注解开启事务
 创建controller，注入Service，调用Service方法
 
+##8.4、使用Druid数据源
+pom引入依赖：
+
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>1.0.19</version>
+	</dependency>	
+
+配置文件修改为：
+ datasource:
+    url: jdbc:mysql://localhost:3306/szl?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: root
+    password: root
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
 

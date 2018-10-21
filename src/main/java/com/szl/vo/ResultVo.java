@@ -4,7 +4,7 @@ import com.szl.common.ResultEnum;
 /**
  * 接口返回类
  * @author szl
- * @data 2018年6月30日 下午8:07:49
+ * @date 2018年6月30日 下午8:07:49
  *
  */
 public class ResultVo {

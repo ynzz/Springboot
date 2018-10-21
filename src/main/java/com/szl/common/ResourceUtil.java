@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author szl
- * @data 2018年7月1日 下午9:59:00
+ * @date 2018年7月1日 下午9:59:00
  *
  */
 @Configuration

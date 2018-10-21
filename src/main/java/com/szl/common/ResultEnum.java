@@ -3,7 +3,7 @@ package com.szl.common;
 /**
  * 返回信息统一管理
  * @author szl
- * @data 2018年6月30日 下午9:28:27
+ * @date 2018年6月30日 下午9:28:27
  *
  */
 public enum ResultEnum {

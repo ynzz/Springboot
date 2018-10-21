@@ -11,7 +11,7 @@ import com.szl.vo.ResultVo;
 /**
  * 统一异常处理
  * @author szl
- * @data 2018年6月30日 下午9:03:30
+ * @date 2018年6月30日 下午9:03:30
  *
  */
 @RestControllerAdvice
