@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.szl.common.ResourceUtil;
 import com.szl.common.ResultEnum;
 import com.szl.entity.Customer;
@@ -37,5 +38,10 @@ public class CustomerController {
 	public ResultVo getCustomer(@RequestParam(value = "mobile") String mobile){
 		Customer customer = customerService.getCustomerByMobile(mobile);
 		return ResultVo.getData(ResultEnum.SUCCESS, customer);
+	}
+	
+	@RequestMapping("/getByMobile")
+	public ResultVo getByMobile(@RequestParam(value = "mobile") String mobile){
+		return ResultVo.getData(ResultEnum.SUCCESS, customerService.selectList(new EntityWrapper<Customer>().where("mobile", mobile)));
 	}
 }

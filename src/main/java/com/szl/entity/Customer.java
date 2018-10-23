@@ -2,11 +2,19 @@ package com.szl.entity;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("customer")
 public class Customer implements Serializable{
 
 	/**
 	 * 
 	 */
+	@TableField(exist = false)
+	private static final long serialVersionUID = 6983500689524183915L;
+	@TableId
 	private String uuid;//主键
 	private String delFlag;//逻辑删除标识
 	private String opeTime;//操作时间
