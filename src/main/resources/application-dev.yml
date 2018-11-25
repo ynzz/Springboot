@@ -1,5 +1,6 @@
 server:
   port: 8999 #端口
+ 
 #  context-path: /szl  #访问前缀
 szl: 
   name: szl

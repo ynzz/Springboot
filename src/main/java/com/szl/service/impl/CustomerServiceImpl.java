@@ -1,6 +1,7 @@
 package com.szl.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -17,6 +18,14 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
 	@Override
 	public Customer getCustomerByMobile(String mobile) {
 		return customerMapper.getCustomerByMobile(mobile);
+	}
+	
+	@Async
+	@Override
+	public void testAsync() throws InterruptedException{
+		System.out.println("异步开始");
+		Thread.sleep(10000);
+		System.out.println("异步调用结束");
 	}
 
 }

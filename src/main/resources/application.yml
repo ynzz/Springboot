@@ -1,6 +1,12 @@
+##spring相关配置=============================================================================
 spring:
+  ##--------------------------------------------------------------------------------------
+  ##生效配置文件
   profiles:
     active: dev
+   
+  ##-------------------------------------------------------------------------------------- 
+  ##数据源
   datasource:
     url: jdbc:mysql://localhost:3306/szl?useUnicode=true&characterEncoding=utf8&useSSL=true
     username: root
@@ -20,14 +26,46 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-    
-    
-  devtools: #热部署
+   
+   #开启druid监控
+#    druid:
+#      web-stat-filter:
+#        exclusions: stat,wall
+#      aop-patterns: com.szl.controller.*
+#      stat-view-servlet:
+#        login-username: admin
+#        login-password: 123
+  
+  ##--------------------------------------------------------------------------------------
+  ##发送邮件
+  mail:
+    host: smtp.163.com
+    # 在163.com注册的用户名，注意这里不需要@163.com后缀
+    username: ynzz1234567
+    # 在163.com注册的密码
+    password: ynzz1234567
+ 
+  ##--------------------------------------------------------------------------------------   
+  resources:
+    static-locations: classpath:/static/,file:E:/study/java/codes/Springboot/files
+  
+  
+  ##--------------------------------------------------------------------------------------   
+  ##热部署
+  devtools: 
     restart:
       enabled: true #热部署生效
       additional-paths:  #设置重启的目录，添加那个目录的文件需要restart
       exclude: WEB-INF/** #排除自动重启
- 
+      trigger-file: trigger.txt #修改了此文件的内容才会重启，避免只要有改动就会重启
+      
+##actuator监控==============================================================================
+endpoints:
+  sensitive: false  #设置所有端点不敏感
+  beans:
+    sensitive: false  #设置单个端点不敏感
+  
+##mybatis=================================================================================
 mybatis:
   type-aliases-package: com.szl.entity
   mapper-locations: classpath:mapper/*.xml

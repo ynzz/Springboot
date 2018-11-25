@@ -414,10 +414,11 @@ pom.xml添加依赖：
 	
 	
 #7、springboot发布方式
-7.1、构建jar包：命令行运行springboot程序
+##7.1、构建jar包：命令行运行springboot程序
 maven install，将项目打包成xxx.jar文件
 命令行cd到jar包所在的目录，运行：java -jar xxx.jar
-7.2、构建war包，发布Tomcat
+
+##7.2、构建war包，发布Tomcat
 将pom.xml中<packaging>jar</packaging>改为war
 引入Tomcat依赖：
 

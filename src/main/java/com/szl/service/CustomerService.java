@@ -11,4 +11,10 @@ public interface CustomerService extends IService<Customer>{
 	 * @return
 	 */
 	public Customer getCustomerByMobile(String mobile);
+	
+	/**
+	 * 测试异步调用
+	 * @throws InterruptedException
+	 */
+	public void testAsync() throws InterruptedException;
 }

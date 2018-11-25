@@ -9,4 +9,6 @@ import com.szl.entity.Customer;
 public interface CustomerMapper extends BaseMapper<Customer>{
 
 	public Customer getCustomerByMobile(@Param("mobile")String mobile);
+	
+	
 }
