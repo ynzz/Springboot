@@ -59,6 +59,14 @@ spring:
       exclude: WEB-INF/** #排除自动重启
       trigger-file: trigger.txt #修改了此文件的内容才会重启，避免只要有改动就会重启
       
+  ##-------------------------------------------------------------------------------------
+#  data:
+#    elasticsearch:
+#      cluster-nodes: 127.0.0.1:9300
+#      cluster-name: sunny
+#      repositories:
+#        enabled: true
+      
 ##actuator监控==============================================================================
 endpoints:
   sensitive: false  #设置所有端点不敏感
@@ -66,7 +74,10 @@ endpoints:
     sensitive: false  #设置单个端点不敏感
   
 ##mybatis=================================================================================
-mybatis:
+ 
+mybatis-plus:
   type-aliases-package: com.szl.entity
   mapper-locations: classpath:mapper/*.xml
+  
+
   

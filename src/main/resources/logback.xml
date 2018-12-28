@@ -1,7 +1,7 @@
 <configuration>
 
 	<property name="default_pattern" value="[%d{yyyy-MM-dd HH:mm:ss SSS}][%-5level]-[%X{userId}-%X{transId}]-[%logger{0}:%L] %m%n"/>
-	<property name="fileNamePath_pre" value="/study/java/logs/"/>
+	<property name="fileNamePath_pre" value="/kuyu/codes/logs/"/>
 
 	<!-- 控制台输出 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
